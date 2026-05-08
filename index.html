@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>عبدالرحمن صبحى محمد | المدرب الرياضي المعتمد</title>
+    <title>عبدالرحمن صبحى محمد | مدرب رياضي - تايكوندو</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -135,7 +135,7 @@
         }
         .notice { background: #fffbeb; border-right: 4px solid #f39c12; padding: 10px; border-radius: 16px; margin-top: 15px; }
 
-        /* زر شهادات الخبرة الكبير */
+        /* زر شهادات الخبرة */
         .certificate-btn {
             display: flex;
             justify-content: center;
@@ -151,17 +151,14 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: 0.2s;
             display: inline-flex;
             align-items: center;
             gap: 12px;
         }
-        .btn-show-certs:hover {
-            transform: scale(1.02);
-            box-shadow: 0 18px 30px rgba(0,0,0,0.25);
-        }
+        .btn-show-certs:hover { transform: scale(1.02); }
 
-        /* قسم عرض الصور (يظهر تحت الزر) */
+        /* معرض الشهادات */
         .certificates-gallery {
             background: white;
             border-radius: 40px;
@@ -171,9 +168,7 @@
             display: none;
             animation: fadeSlideDown 0.4s ease;
         }
-        .certificates-gallery.show {
-            display: block;
-        }
+        .certificates-gallery.show { display: block; }
         @keyframes fadeSlideDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -192,29 +187,17 @@
             text-align: center;
             border: 1px solid #ffe1a0;
         }
-        .cert-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
-        }
+        .cert-card:hover { transform: translateY(-6px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
         .cert-card img {
             width: 100%;
             max-height: 200px;
             object-fit: contain;
             border-radius: 16px;
         }
-        .cert-card p {
-            margin-top: 12px;
-            font-weight: bold;
-            color: #e67e22;
-        }
-        .gallery-note {
-            text-align: center;
-            margin-top: 1.5rem;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
+        .cert-card p { margin-top: 12px; font-weight: bold; color: #e67e22; }
+        .gallery-note { text-align: center; margin-top: 1.5rem; color: #7f8c8d; }
 
-        /* Lightbox لتكبير الصورة مع علامة X */
+        /* Lightbox مع X */
         .img-lightbox {
             display: none;
             position: fixed;
@@ -228,15 +211,8 @@
             align-items: center;
             cursor: pointer;
         }
-        .img-lightbox.active {
-            display: flex;
-        }
-        .img-lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 20px;
-        }
+        .img-lightbox.active { display: flex; }
+        .img-lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 20px; }
         .close-icon {
             position: absolute;
             top: 30px;
@@ -252,12 +228,8 @@
             justify-content: center;
             cursor: pointer;
             transition: 0.2s;
-            font-weight: bold;
         }
-        .close-icon:hover {
-            background: #e74c3c;
-            transform: scale(1.05);
-        }
+        .close-icon:hover { background: #e74c3c; transform: scale(1.05); }
 
         /* روابط التواصل */
         .contact-links {
@@ -284,15 +256,12 @@
             font-size: 1.1rem;
             transition: 0.2s;
         }
-        .contact-btn.call {
-            background: #1e2a3a;
-        }
+        .contact-btn.call { background: #1e2a3a; }
         .contact-btn:hover { transform: scale(1.02); opacity: 0.95; }
 
         @media (max-width: 750px) {
             body { padding: 1rem; }
             .btn-show-certs { font-size: 1.2rem; padding: 12px 25px; }
-            .certificates-gallery { padding: 1rem; }
             .close-icon { top: 20px; right: 20px; width: 45px; height: 45px; font-size: 2rem; }
         }
     </style>
@@ -306,149 +275,96 @@
         </div>
         <div class="profile-details">
             <h1>عبدالرحمن صبحى محمد</h1>
-            <div class="badge-title"><i class="fas fa-dumbbell"></i> كابتن / مدرب رياضي محترف</div>
+            <div class="badge-title"><i class="fas fa-dumbbell"></i> كابتن / مدرب رياضي - تايكوندو</div>
             <div class="profile-stats">
-                <span class="stat-item"><i class="fas fa-certificate"></i> 12 شهادة خبرة</span>
-                <span class="stat-item"><i class="fas fa-chalkboard-user"></i> مدرب سباحة ومنقذ</span>
-                <span class="stat-item"><i class="fas fa-heartbeat"></i> تغذية رياضية</span>
+                <span class="stat-item"><i class="fas fa-certificate"></i> 12 شهادة</span>
+                <span class="stat-item"><i class="fas fa-chalkboard-user"></i> تايكوندو & سباحة</span>
+                <span class="stat-item"><i class="fas fa-heartbeat"></i> طب رياضي</span>
             </div>
         </div>
     </div>
 
-    <!-- زر عرض شهادات الخبرة -->
+    <!-- زر شهادات الخبرة -->
     <div class="certificate-btn">
         <button class="btn-show-certs" id="toggleCertBtn"><i class="fas fa-certificate"></i> شهادات الخبرة والتقدير <i class="fas fa-chevron-down"></i></button>
     </div>
-
-    <!-- قسم المعرض المخفي -->
     <div id="certificatesSection" class="certificates-gallery">
         <div class="gallery-grid" id="galleryGrid"></div>
-        <div class="gallery-note"><i class="fas fa-hand-pointer"></i> اضغط على أي صورة لتكبيرها وعرضها بوضوح</div>
+        <div class="gallery-note"><i class="fas fa-hand-pointer"></i> اضغط على أي صورة لتكبيرها</div>
     </div>
 
-    <!-- ========== الترتيب الجديد: الدورات والشهادات (الجهة والتاريخ) قبل الخبرات العملية ========== -->
+    <!-- الدورات والشهادات (بإضافة التايكوندو) -->
     <div class="cv-section">
         <h2><i class="fas fa-certificate"></i> الدورات والشهادات المهنية</h2>
         <table class="courses-table">
-            <thead>
-                <tr>
-                    <th>الشهادة / الدورة</th>
-                    <th>الجهة المانحة</th>
-                    <th>التاريخ</th>
-                </tr>
-            </thead>
+            <thead><tr><th>الشهادة / الدورة</th><th>الجهة المانحة</th><th>التاريخ</th></tr></thead>
             <tbody>
-                <tr>
-                    <td>تخصص طب رياضي (تدليك، إصابات رياضية، إسعافات أولية، إصابات ملاعب)</td>
-                    <td>الرابطة الأوروبية للعلاج الطبيعي والنشاط البدني</td>
-                    <td>نوفمبر 2024</td>
-                </tr>
-                <tr>
-                    <td>التغذية الصحية للرياضيين</td>
-                    <td>الجمعية المصرية للطب البديل</td>
-                    <td>15/4/2025</td>
-                </tr>
-                <tr>
-                    <td>إعداد معلم سباحة وسلامة في الماء</td>
-                    <td>الاتحاد المصري للغوص والإنقاذ</td>
-                    <td>11/6/2025</td>
-                </tr>
-                <tr>
-                    <td>دورة منقذ حمام سباحة</td>
-                    <td>الاتحاد المصري للغوص والإنقاذ</td>
-                    <td>6/8/2025</td>
-                </tr>
+                <tr><td>تخصص تايكوندو (تدريب - تحكيم - قتال)</td><td>الاتحاد المصري للتايكوندو</td><td>2023</td></tr>
+                <tr><td>تخصص طب رياضي (تدليك، إصابات، إسعافات أولية)</td><td>الرابطة الأوروبية للعلاج الطبيعي</td><td>نوفمبر 2024</td></tr>
+                <tr><td>التغذية الصحية للرياضيين</td><td>الجمعية المصرية للطب البديل</td><td>15/4/2025</td></tr>
+                <tr><td>إعداد معلم سباحة وسلامة في الماء</td><td>الاتحاد المصري للغوص والإنقاذ</td><td>11/6/2025</td></tr>
+                <tr><td>دورة منقذ حمام سباحة</td><td>الاتحاد المصري للغوص والإنقاذ</td><td>6/8/2025</td></tr>
             </tbody>
         </table>
-        <div class="notice"><i class="fas fa-stamp"></i> شهادة خبرة من وزارة العدل + الشهر العقاري (مدرب شخصي – إعداد لياقة – أحمال رياضية) • شهادة إنهاء الخدمة العسكرية 19/1/2026</div>
+        <div class="notice"><i class="fas fa-stamp"></i> شهادة خبرة من وزارة العدل (مدرب شخصي – أحمال رياضية) • شهادة إنهاء الخدمة العسكرية 19/1/2026</div>
     </div>
 
-    <!-- الخبرات العملية (بعد الدورات) -->
+    <!-- الخبرات العملية -->
     <div class="cv-section">
         <h2><i class="fas fa-briefcase"></i> الخبرات العملية</h2>
         <div class="experience-grid">
-            <div class="exp-card">
-                <h3>📌 مدرب شخصي – أحمال رياضية</h3>
-                <ul>
-                    <li>شهادة خبرة موثقة من وزارة العدل (1/9/2024 – 30/5/2025)</li>
-                    <li>تصميم برامج تدريبية، إعداد اللياقة، تطبيق الأحمال علمياً</li>
-                </ul>
-            </div>
-            <div class="exp-card">
-                <h3>🏨 سياحة وحمامات سباحة</h3>
-                <ul>
-                    <li>المنتجعات والفنادق: تعليم السباحة، الإنقاذ، إدارة المسابح</li>
-                </ul>
-            </div>
-            <div class="exp-card">
-                <h3>⚕️ مجالات رياضية أخرى</h3>
-                <ul>
-                    <li>تأهيل بدني، إصابات ملاعب، تدليك رياضي، إشراف مدارس</li>
-                </ul>
-            </div>
+            <div class="exp-card"><h3>🥋 تدريب تايكوندو</h3><ul><li>تدريب فئات عمرية مختلفة</li><li>تحكيم وتنظيم بطولات</li><li>تأهيل بدني وفني للاعبين</li></ul></div>
+            <div class="exp-card"><h3>📌 مدرب شخصي – أحمال رياضية</h3><ul><li>شهادة وزارة العدل (2024-2025)</li><li>تصميم برامج لياقة وتأهيل</li></ul></div>
+            <div class="exp-card"><h3>🏨 سياحة وسباحة</h3><ul><li>تعليم سباحة وإنقاذ</li><li>إدارة حمامات سباحة بالفنادق</li></ul></div>
         </div>
     </div>
 
-    <!-- التعليم والمهارات والنبذة المهنية -->
+    <!-- التعليم والمهارات -->
     <div class="cv-section">
         <h2><i class="fas fa-graduation-cap"></i> التعليم</h2>
-        <p><strong>بكالوريوس التربية الرياضية</strong> – 2025</p>
+        <p><strong>بكالوريوس التربية الرياضية</strong> – 2025 (تخصص تدريب تايكوندو)</p>
     </div>
-
     <div class="cv-section">
         <h2><i class="fas fa-cogs"></i> المهارات</h2>
         <div class="skills-wrapper">
-            <div class="skills-col"><h3>🔧 فنية</h3><span class="badge-skill">تدريب شخصي</span><span class="badge-skill">سباحة وإنقاذ</span><span class="badge-skill">إسعافات وتدليك</span><span class="badge-skill">تغذية رياضية</span></div>
-            <div class="skills-col"><h3>🧠 شخصية</h3><span class="badge-skill">قيادة وتحفيز</span><span class="badge-skill">تواصل فعال</span><span class="badge-skill">حل مشكلات</span><span class="badge-skill">عمل جماعي</span></div>
+            <div class="skills-col"><h3>🔧 فنية</h3><span class="badge-skill">تايكوندو (تدريب/تحكيم)</span><span class="badge-skill">تدريب شخصي وأحمال</span><span class="badge-skill">سباحة وإنقاذ</span><span class="badge-skill">طب رياضي وتدليك</span><span class="badge-skill">تغذية رياضية</span></div>
+            <div class="skills-col"><h3>🧠 شخصية</h3><span class="badge-skill">قيادة وتحفيز</span><span class="badge-skill">تواصل فعال</span><span class="badge-skill">انضباط</span><span class="badge-skill">حل مشكلات</span></div>
         </div>
     </div>
-
     <div class="cv-section">
         <h2><i class="fas fa-user-astronaut"></i> نبذة مهنية</h2>
-        <p>مدرب رياضي متكامل، حاصل على شهادات في الطب الرياضي، التغذية الصحية، تعليم وإنقاذ السباحة (الاتحاد المصري للغوص). خبرة موثقة من وزارة العدل في التدريب الشخصي والأحمال الرياضية، مع خلفية في السياحة والمنتجعات. جاهز للعمل فوراً.</p>
+        <p>مدرب تايكوندو معتمد، خريج تربية رياضية 2025، متخصص في التدريب والتحكيم. بالإضافة إلى شهادات في الطب الرياضي، التغذية، تعليم وإنقاذ السباحة. خبرة موثقة في التدريب الشخصي والأحمال الرياضية من وزارة العدل، وخبرة ميدانية في السياحة والمنتجعات. أنهيت الخدمة العسكرية وجاهز للعمل.</p>
     </div>
 
-    <!-- روابط واتساب والاتصال -->
+    <!-- روابط التواصل -->
     <div class="contact-links">
         <a href="https://wa.me/201028414049" target="_blank" class="contact-btn"><i class="fab fa-whatsapp fa-lg"></i> واتساب: 01028414049</a>
         <a href="tel:+201028414049" class="contact-btn call"><i class="fas fa-phone-alt"></i> اتصال مباشر</a>
     </div>
 </div>
 
-<!-- Lightbox مع علامة X للإغلاق -->
+<!-- Lightbox -->
 <div id="imgLightbox" class="img-lightbox">
     <div class="close-icon" id="closeLightboxBtn">✖</div>
     <img id="zoomedImg" src="" alt="شهادة مكبرة">
 </div>
 
 <script>
-    // إنشاء 12 صورة في المعرض
+    // إنشاء 12 صورة للمعرض
     const totalImages = 12;
     const galleryGrid = document.getElementById('galleryGrid');
-
-    function createCertCard(num) {
+    for (let i = 1; i <= totalImages; i++) {
         const card = document.createElement('div');
         card.className = 'cert-card';
         const img = document.createElement('img');
-        img.src = `images/${num}.jpg`;
-        img.alt = `شهادة رقم ${num}`;
-        img.onerror = function() {
-            this.onerror = null;
-            this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"%3E%3Crect width="200" height="150" fill="%23f3f4f6"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%239ca3af" font-size="14"%3E📄 صورة %23' + num + '%3C/text%3E%3C/svg%3E';
-        };
+        img.src = `images/${i}.jpg`;
+        img.alt = `شهادة رقم ${i}`;
+        img.onerror = function() { this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"%3E%3Crect width="200" height="150" fill="%23f3f4f6"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%239ca3af" font-size="14"%3E📄 صورة %23'+i+'%3C/text%3E%3C/svg%3E'; };
         const p = document.createElement('p');
-        p.innerHTML = `📜 الشهادة رقم ${num}`;
-        card.appendChild(img);
-        card.appendChild(p);
-        card.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openLightbox(img.src);
-        });
-        return card;
-    }
-
-    for (let i = 1; i <= totalImages; i++) {
-        galleryGrid.appendChild(createCertCard(i));
+        p.innerHTML = `📜 الشهادة رقم ${i}`;
+        card.appendChild(img); card.appendChild(p);
+        card.addEventListener('click', () => openLightbox(img.src));
+        galleryGrid.appendChild(card);
     }
 
     // زر إظهار/إخفاء المعرض
@@ -456,7 +372,7 @@
     const certSection = document.getElementById('certificatesSection');
     let isVisible = false;
     toggleBtn.addEventListener('click', () => {
-        if (isVisible) {
+        if(isVisible) {
             certSection.classList.remove('show');
             toggleBtn.innerHTML = '<i class="fas fa-certificate"></i> شهادات الخبرة والتقدير <i class="fas fa-chevron-down"></i>';
         } else {
@@ -466,33 +382,15 @@
         isVisible = !isVisible;
     });
 
-    // Lightbox مع زر الإغلاق بواسطة X
+    // Lightbox with X
     const lightbox = document.getElementById('imgLightbox');
     const zoomedImg = document.getElementById('zoomedImg');
-    const closeBtn = document.getElementById('closeLightboxBtn');
-
-    function openLightbox(src) {
-        zoomedImg.src = src;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-        zoomedImg.src = '';
-    }
-    // إغلاق بالضغط على علامة X
-    closeBtn.addEventListener('click', closeLightbox);
-    // إغلاق بالضغط على الخلفية
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-    });
-    // إغلاق بالضغط على زر Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-            closeLightbox();
-        }
-    });
+    const closeX = document.getElementById('closeLightboxBtn');
+    function openLightbox(src) { zoomedImg.src = src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; zoomedImg.src = ''; }
+    closeX.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox(); });
 </script>
 </body>
 </html>
