@@ -171,6 +171,90 @@
         .notice { background: #fffbeb; border-left: 4px solid #f39c12; padding: 10px; border-radius: 16px; margin-top: 15px; }
         body.lang-ar .notice { border-left: none; border-right: 4px solid #f39c12; }
 
+        /* ========== VIDEO CONTAINERS - PREMIUM STYLE ========== */
+        .videos-wrapper {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            align-items: stretch;
+        }
+        .video-card {
+            flex: 1 1 0;
+            min-width: 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            border-color: rgba(243, 156, 18, 0.8);
+        }
+        .video-label {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            padding: 10px 16px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #1e2a3a;
+            letter-spacing: 0.5px;
+        }
+        .video-label i {
+            margin: 0 8px;
+            font-size: 1.2rem;
+        }
+        .video-container {
+            position: relative;
+            background: #0a1a2a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            min-height: 280px;
+        }
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .video-card:hover .video-container video {
+            transform: scale(1.02);
+        }
+        /* Water ripple overlay effect (pure CSS) */
+        .video-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0) 0%, rgba(52,152,219,0.15) 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .video-card:hover .video-container::after {
+            opacity: 1;
+        }
+        /* Subtle shimmer effect on load */
+        @keyframes gentleRipple {
+            0% { box-shadow: 0 0 0 0 rgba(243,156,18,0); }
+            50% { box-shadow: 0 0 0 8px rgba(243,156,18,0.2); }
+            100% { box-shadow: 0 0 0 0 rgba(243,156,18,0); }
+        }
+        .video-card {
+            animation: gentleRipple 0.8s ease-out;
+        }
+
         /* Certificate Button & Gallery */
         .certificate-btn { display: flex; justify-content: center; margin: 1rem 0; }
         .btn-show-certs {
@@ -291,10 +375,20 @@
         .contact-btn.pdf-en { background: #c0392b; }
         .contact-btn:hover { transform: scale(1.02); opacity: 0.95; }
 
-        @media (max-width: 750px) {
+        @media (max-width: 850px) {
             body { padding: 1rem; }
             .btn-show-certs { font-size: 1.2rem; padding: 12px 25px; }
             .close-icon { top: 20px; right: 20px; width: 45px; height: 45px; font-size: 2rem; }
+            .videos-wrapper {
+                gap: 1rem;
+            }
+            .video-container {
+                min-height: 180px;
+            }
+            .video-label {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
@@ -306,7 +400,7 @@
         <button class="lang-btn active" id="lang-en">🇬🇧 English</button>
     </div>
 
-    <!-- Profile Card (dynamic text) -->
+    <!-- Profile Card -->
     <div class="profile-card">
         <div class="profile-avatar">
             <img src="profil.jpg" alt="Profile" onerror="this.src='https://placehold.co/400x400?text=Profile'">
@@ -331,8 +425,11 @@
         <div class="gallery-note" id="galleryNote"><i class="fas fa-hand-pointer"></i> Click any image to enlarge</div>
     </div>
 
-    <!-- Dynamic Content Sections -->
+    <!-- Dynamic Content Sections (CV sections without video) -->
     <div id="dynamicContent"></div>
+
+    <!-- Video section (two videos side by side, premium style) -->
+    <div id="videoPlaceholder"></div>
 
     <!-- Contact & PDF Buttons -->
     <div class="contact-links">
@@ -451,6 +548,7 @@
     };
 
     let currentLang = 'en';
+    let videosInserted = false;
 
     function updateLanguage(lang) {
         currentLang = lang;
@@ -467,7 +565,7 @@
         document.getElementById('pdfArText').innerText = data.pdfAr;
         document.getElementById('pdfEnText').innerText = data.pdfEn;
 
-        // rebuild dynamic sections
+        // rebuild dynamic sections (excluding video and about section for now)
         const container = document.getElementById('dynamicContent');
         container.innerHTML = '';
 
@@ -513,12 +611,66 @@
             </div>`;
         container.appendChild(skillsSection);
 
-        // About
+        // Insert two videos with PREMIUM STYLE only once
+        if (!videosInserted) {
+            const videoPlaceholder = document.getElementById('videoPlaceholder');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'videos-wrapper';
+
+            // Video 1 card
+            const card1 = document.createElement('div');
+            card1.className = 'video-card';
+            const label1 = document.createElement('div');
+            label1.className = 'video-label';
+            label1.innerHTML = '<i class="fas fa-water"></i> 🏊‍♂️ Advanced Swimming Techniques <i class="fas fa-fish"></i>';
+            const videoDiv1 = document.createElement('div');
+            videoDiv1.className = 'video-container';
+            const videoElem1 = document.createElement('video');
+            videoElem1.src = 'video1.mp4';
+            videoElem1.autoplay = true;
+            videoElem1.loop = true;
+            videoElem1.muted = true;
+            videoElem1.playsInline = true;
+            videoElem1.setAttribute('playsinline', '');
+            videoDiv1.appendChild(videoElem1);
+            card1.appendChild(label1);
+            card1.appendChild(videoDiv1);
+            wrapper.appendChild(card1);
+
+            // Video 2 card
+            const card2 = document.createElement('div');
+            card2.className = 'video-card';
+            const label2 = document.createElement('div');
+            label2.className = 'video-label';
+            label2.innerHTML = '<i class="fas fa-life-ring"></i> 🏊‍♀️ Lifeguard & Rescue Training <i class="fas fa-shield-alt"></i>';
+            const videoDiv2 = document.createElement('div');
+            videoDiv2.className = 'video-container';
+            const videoElem2 = document.createElement('video');
+            videoElem2.src = 'video2.mp4';
+            videoElem2.autoplay = true;
+            videoElem2.loop = true;
+            videoElem2.muted = true;
+            videoElem2.playsInline = true;
+            videoElem2.setAttribute('playsinline', '');
+            videoDiv2.appendChild(videoElem2);
+            card2.appendChild(label2);
+            card2.appendChild(videoDiv2);
+            wrapper.appendChild(card2);
+
+            videoPlaceholder.appendChild(wrapper);
+            videosInserted = true;
+        }
+
+        // Add Professional Summary (About) after video placeholder
         const aboutSection = document.createElement('div');
         aboutSection.className = 'cv-section';
         aboutSection.innerHTML = `<h2><i class="fas fa-user-astronaut"></i> ${data.sections.about.title}</h2>
             <p>${data.sections.about.text}</p>`;
-        container.appendChild(aboutSection);
+        const videoHolder = document.getElementById('videoPlaceholder');
+        const oldAbout = document.getElementById('tempAboutSection');
+        if (oldAbout) oldAbout.remove();
+        aboutSection.id = 'tempAboutSection';
+        videoHolder.insertAdjacentElement('afterend', aboutSection);
 
         // Update PDF links
         document.getElementById('pdfArabicBtn').href = `CV-Arabic.pdf`;
@@ -528,16 +680,26 @@
         if (lang === 'ar') {
             document.body.classList.add('lang-ar');
             document.body.dir = 'rtl';
+            // update arabic labels
+            const labels = document.querySelectorAll('.video-label');
+            if (labels.length >= 2) {
+                labels[0].innerHTML = '<i class="fas fa-water"></i> 🏊‍♂️ تقنيات سباحة متقدمة <i class="fas fa-fish"></i>';
+                labels[1].innerHTML = '<i class="fas fa-life-ring"></i> 🏊‍♀️ تدريب إنقاذ وإسعاف <i class="fas fa-shield-alt"></i>';
+            }
         } else {
             document.body.classList.remove('lang-ar');
             document.body.dir = 'ltr';
+            const labels = document.querySelectorAll('.video-label');
+            if (labels.length >= 2) {
+                labels[0].innerHTML = '<i class="fas fa-water"></i> 🏊‍♂️ Advanced Swimming Techniques <i class="fas fa-fish"></i>';
+                labels[1].innerHTML = '<i class="fas fa-life-ring"></i> 🏊‍♀️ Lifeguard & Rescue Training <i class="fas fa-shield-alt"></i>';
+            }
         }
         // update active button style
         document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
         document.getElementById('lang-en').classList.toggle('active', lang === 'en');
         
-        // Update the text on the toggle button if it's visible (the text inside the span already updated)
-        // But need to refresh the button's innerHTML to reflect the new certBtnText without breaking the icon
+        // Update toggle button text
         const isGalleryVisible = document.getElementById('certificatesSection').classList.contains('show');
         const icon = isGalleryVisible ? 'fa-chevron-up' : 'fa-chevron-down';
         toggleBtn.innerHTML = `<i class="fas fa-certificate"></i> <span id="certBtnText">${data.certBtn}</span> <i class="fas ${icon}"></i>`;
