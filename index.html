@@ -171,19 +171,18 @@
         .notice { background: #fffbeb; border-left: 4px solid #f39c12; padding: 10px; border-radius: 16px; margin-top: 15px; }
         body.lang-ar .notice { border-left: none; border-right: 4px solid #f39c12; }
 
-        /* ========== VIDEO CONTAINERS - PREMIUM STYLE ========== */
+        /* ========== VIDEO CONTAINERS - FIXED SIZE 800x1000 ========== */
         .videos-wrapper {
             display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
+            flex-direction: column;
             gap: 2rem;
             margin-bottom: 2rem;
             justify-content: center;
-            align-items: stretch;
+            align-items: center;
         }
         .video-card {
-            flex: 1 1 0;
-            min-width: 0;
+            width: 800px;
+            max-width: 100%;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
             border-radius: 40px;
@@ -199,10 +198,10 @@
         }
         .video-label {
             background: linear-gradient(135deg, #f39c12, #e67e22);
-            padding: 10px 16px;
+            padding: 12px 20px;
             text-align: center;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #1e2a3a;
             letter-spacing: 0.5px;
         }
@@ -217,19 +216,20 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            min-height: 280px;
+            width: 100%;
+            height: 1000px;
         }
         .video-container video {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
-            object-fit: cover;
+            object-fit: contain;
             transition: transform 0.5s ease;
         }
         .video-card:hover .video-container video {
             transform: scale(1.02);
         }
-        /* Water ripple overlay effect (pure CSS) */
+        /* Water ripple overlay effect */
         .video-container::after {
             content: '';
             position: absolute;
@@ -245,7 +245,7 @@
         .video-card:hover .video-container::after {
             opacity: 1;
         }
-        /* Subtle shimmer effect on load */
+        /* Shimmer effect on load */
         @keyframes gentleRipple {
             0% { box-shadow: 0 0 0 0 rgba(243,156,18,0); }
             50% { box-shadow: 0 0 0 8px rgba(243,156,18,0.2); }
@@ -375,19 +375,24 @@
         .contact-btn.pdf-en { background: #c0392b; }
         .contact-btn:hover { transform: scale(1.02); opacity: 0.95; }
 
+        /* Responsive: when screen smaller than 850px, video cards fit to width */
         @media (max-width: 850px) {
+            .video-card {
+                width: 100%;
+            }
+            .video-container {
+                height: auto;
+                aspect-ratio: 8 / 10;
+            }
+        }
+
+        @media (max-width: 750px) {
             body { padding: 1rem; }
             .btn-show-certs { font-size: 1.2rem; padding: 12px 25px; }
             .close-icon { top: 20px; right: 20px; width: 45px; height: 45px; font-size: 2rem; }
-            .videos-wrapper {
-                gap: 1rem;
-            }
-            .video-container {
-                min-height: 180px;
-            }
             .video-label {
-                font-size: 0.8rem;
-                padding: 6px 12px;
+                font-size: 0.85rem;
+                padding: 8px 12px;
             }
         }
     </style>
@@ -428,7 +433,7 @@
     <!-- Dynamic Content Sections (CV sections without video) -->
     <div id="dynamicContent"></div>
 
-    <!-- Video section (two videos side by side, premium style) -->
+    <!-- Video section (two videos stacked vertically, fixed 800x1000 size) -->
     <div id="videoPlaceholder"></div>
 
     <!-- Contact & PDF Buttons -->
@@ -611,7 +616,7 @@
             </div>`;
         container.appendChild(skillsSection);
 
-        // Insert two videos with PREMIUM STYLE only once
+        // Insert two videos with FIXED SIZE 800x1000 only once
         if (!videosInserted) {
             const videoPlaceholder = document.getElementById('videoPlaceholder');
             const wrapper = document.createElement('div');
